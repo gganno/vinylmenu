@@ -16,10 +16,6 @@ export default function Home({ records }: PageProps) {
           {records.map((record, i) => {
             return (
               <div key={i} className={styles.card}>
-                <h2>
-                  {record.basic_information.title} -{" "}
-                  {record.basic_information.artists[0].name}
-                </h2>
                 <div className={styles.imageContainer}>
                   <Image
                     src={record.basic_information.cover_image}
@@ -28,6 +24,12 @@ export default function Home({ records }: PageProps) {
                     priority
                   />
                 </div>
+                <h2>
+                  {record.basic_information.title }
+                </h2>
+                <h3>
+                  {record.basic_information.artists[0].name}
+                </h3>
               </div>
             );
           })}
@@ -40,7 +42,7 @@ export default function Home({ records }: PageProps) {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await fetch(
-      `https://api.discogs.com/users/alexrabin/collection/folders/0/releases?token=${process.env.DISCOG_TOKEN}&per_page=100&sort=artist`
+      `https://api.discogs.com/users/gganno//collection/folders/0/releases?token=${process.env.DISCOG_TOKEN}&per_page=100&sort=artist`
     );
 
     const data = (await response.json()) as DiscogResponse;
